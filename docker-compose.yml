@@ -1,51 +1,73 @@
+version: '2'
+
+networks:
+  elk:
+    driver: bridge
+
+services:
+
 # elasticsearch
-elasticsearch:
-  build: "./elk/elasticsearch"
-  container_name: "elasticsearch"
-  ports:
-    - "9200:9200"
-    - "9300:9300"
+  elasticsearch:
+    build:
+      context: elk/elasticsearch/
+    container_name: "elasticsearch"
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - ./data:/data
+    networks:
+      - elk
 
 # kibana
-kibana:
-  build: "./elk/kibana"
-  container_name: "kibana"
-  ports:
-    - "5601:5601"
-  links:
-    - elasticsearch:elasticsearch
+  kibana:
+    build:
+      context: elk/kibana/
+    container_name: "kibana"
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    networks:
+      - elk
 
 # logstash
-logstash:
-  build: "./elk/logstash"
-  container_name: "logstash"
-  links:
-    - elasticsearch:elasticsearch
-  environment:
-    - AWS_ACCESS_KEY_ID=dummy
-    - AWS_SECRET_ACCESS_KEY=dummy
+  logstash:
+    build: 
+      context: elk/logstash/
+    container_name: "logstash"
+    depends_on:
+      - elasticsearch
+    environment:
+      - AWS_ACCESS_KEY_ID=dummy
+      - AWS_SECRET_ACCESS_KEY=dummy
+    volumes:
+      - ./data:/data
+    networks:
+      - elk
 
 # dionaea
-dionaea:
-  build: "./dionaea"
-  container_name: "dionaea"
-  stdin_open: true
-  links:
-    - elasticsearch:elasticsearch
-  ports:
-    - "20:20"
-    - "21:21"
-    - "42:42"
-    - "69:69/udp"
-    - "8081:80"
-    - "135:135"
-    - "443:443"
-    - "445:445"
-    - "1433:1433"
-    - "1723:1723"
-    - "1883:1883"
-    - "3306:3306"
-    - "5060:5060"
-    - "5060:5060/udp"
-    - "5061:5061"
-    - "27017:27017"
+  dionaea:
+    build:
+      context: dionaea/
+    container_name: "dionaea"
+    stdin_open: true
+    ports:
+      - "20:20"
+      - "21:21"
+      - "42:42"
+      - "69:69/udp"
+      - "8081:80"
+      - "135:135"
+      - "443:443"
+      - "445:445"
+      - "1433:1433"
+      - "1723:1723"
+      - "1883:1883"
+      - "3306:3306"
+      - "5060:5060"
+      - "5060:5060/udp"
+      - "5061:5061"
+      - "27017:27017"
+    volumes:
+      - /data/dionaea/:/opt/dionaea/var/dionaea
