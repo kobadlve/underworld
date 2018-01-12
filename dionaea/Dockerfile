@@ -50,10 +50,12 @@ RUN apt-get update -y && \
       --with-nl-lib=/usr/lib \
       --enable-static && \
     make && \
-    make install && \
+    make install
+
+RUN cp /opt/dionaea/etc/dionaea/ihandlers-available/log_json.yaml /opt/dionaea/etc/dionaea/ihandlers-enabled/
 
 # Setup runtime and clean up
-    apt-get purge -y \
+RUN   apt-get purge -y \
       autoconf \
       automake \
       build-essential \
