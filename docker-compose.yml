@@ -16,6 +16,8 @@ services:
       - "9300:9300"
     volumes:
       - ./data:/data
+    environment:
+      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
     networks:
       - elk
 
@@ -26,25 +28,25 @@ services:
     container_name: "kibana"
     ports:
       - "5601:5601"
-    depends_on:
-      - elasticsearch
+    environment:
+      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
     networks:
       - elk
+    depends_on:
+      - elasticsearch
 
 # logstash
   logstash:
     build: 
       context: elk/logstash/
-    container_name: "logstash"
-    depends_on:
-      - elasticsearch
-    environment:
-      - AWS_ACCESS_KEY_ID=dummy
-      - AWS_SECRET_ACCESS_KEY=dummy
     volumes:
       - ./data:/data
+    environment:
+      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
     networks:
       - elk
+    depends_on:
+      - elasticsearch
 
 # dionaea
   dionaea:
@@ -70,4 +72,12 @@ services:
       - "5061:5061"
       - "27017:27017"
     volumes:
-      - /data/dionaea/:/opt/dionaea/var/dionaea
+      - ./data/dionaea/roots/ftp:/opt/dionaea/var/dionaea/roots/ftp
+      - ./data/dionaea/roots/tftp:/opt/dionaea/var/dionaea/roots/tftp
+      - ./data/dionaea/roots/www:/opt/dionaea/var/dionaea/roots/www
+      - ./data/dionaea/roots/upnp:/opt/dionaea/var/dionaea/roots/upnp
+      - ./data/dionaea:/opt/dionaea/var/dionaea
+      - ./data/dionaea/binaries:/opt/dionaea/var/dionaea/binaries
+      - ./data/dionaea/log:/opt/dionaea/var/log
+      - ./data/dionaea/rtp:/opt/dionaea/var/dionaea/rtp
+      - ./data/dionaea/bitstreams:/opt/dionaea/var/dionaea/bistreams

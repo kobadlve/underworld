@@ -52,7 +52,14 @@ RUN apt-get update -y && \
     make && \
     make install
 
+# Setup user and groups
+RUN addgroup --gid 2000 dionaea && \
+    adduser --system --no-create-home --shell /bin/bash --uid 2000 --disabled-password --disabled-login --gid 2000 dionaea
+
 RUN cp /opt/dionaea/etc/dionaea/ihandlers-available/log_json.yaml /opt/dionaea/etc/dionaea/ihandlers-enabled/
+
+# Supply configs and set permissions
+RUN chown -R dionaea:dionaea /opt/dionaea/var
 
 # Setup runtime and clean up
 RUN   apt-get purge -y \
@@ -99,4 +106,4 @@ RUN   apt-get purge -y \
     rm -rf /root/* /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Start dionaea
-CMD ["/opt/dionaea/bin/dionaea"]
+CMD ["/opt/dionaea/bin/dionaea", "-u", "dionaea", "-g", "dionaea"]
