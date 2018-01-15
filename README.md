@@ -22,6 +22,8 @@ Kibana running on http://localhost:5061
 
 Please set index pattern to `logstash-*` and Time filter field name to `@timestame`
 
+![kibana](https://github.com/kobadlve/honeydirect/blob/master/kibana.png)
+
 ## Running service
 
 * ELK
