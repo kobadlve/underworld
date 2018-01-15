@@ -1,6 +1,6 @@
-# honeydrive
+# honeydirect
 
-honeydrive is a multi honeypot platform using docker.
+honeydirect is a multi honeypot platform using docker.
 
 It shows logs of honeypots using ELK Stack(https://www.elastic.co/jp/elk-stack) and analyze it.
 
@@ -8,8 +8,8 @@ It shows logs of honeypots using ELK Stack(https://www.elastic.co/jp/elk-stack) 
 
 Clone repository
 ```
-$ git clone https://github.com/kobadlve/honeydrive.git
-$ cd honeydrive
+$ git clone https://github.com/kobadlve/honeydirect.git
+$ cd honeydirect
 ```
 
 Setup docker-compose
