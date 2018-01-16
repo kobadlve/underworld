@@ -8,13 +8,17 @@ It shows log of honeypots using ELK Stack(https://www.elastic.co/jp/elk-stack) a
 
 1. Install Docker and Docker Compose
 
-2. Clone this repository
+Docker needs at least 4GB memory
+
+2. Start Docker
+
+3. Clone this repository
 ```
 $ git clone https://github.com/kobadlve/honeydirect.git
 $ cd honeydirect
 ```
 
-3. Build
+4. Build
 ```
 $ docker-compose build
 $ docker-compose up
