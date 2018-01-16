@@ -2,17 +2,19 @@
 
 honeydirect is a multi honeypot platform using docker.
 
-It shows logs of honeypots using ELK Stack(https://www.elastic.co/jp/elk-stack) and analyze it.
+It shows log of honeypots using ELK Stack(https://www.elastic.co/jp/elk-stack) and analyze it.
 
 ## Installation
 
-Clone repository
+1. Install Docker and Docker Compose
+
+2. Clone this repository
 ```
 $ git clone https://github.com/kobadlve/honeydirect.git
 $ cd honeydirect
 ```
 
-Setup docker-compose
+3. Build
 ```
 $ docker-compose build
 $ docker-compose up
