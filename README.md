@@ -14,8 +14,8 @@ Docker needs at least 4GB memory
 
 3. Clone this repository
 ```
-$ git clone https://github.com/kobadlve/honeydirect.git
-$ cd honeydirect
+$ git clone https://github.com/kobadlve/underworld.git
+$ cd underworld
 ```
 
 4. Build
@@ -28,7 +28,7 @@ Kibana running on http://localhost:5061
 
 Please set index pattern to `logstash-*` and Time filter field name to `@timestame`
 
-![kibana](https://github.com/kobadlve/honeydirect/blob/master/kibana.png)
+![kibana](https://github.com/kobadlve/underworld/blob/master/kibana.png)
 
 ## Running service
 
