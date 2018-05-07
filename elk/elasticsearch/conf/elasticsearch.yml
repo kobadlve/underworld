@@ -1,5 +1,5 @@
-cluster.name: honeydrivecluster
-node.name: "honeydrivecluster-node-01"
+cluster.name: underworldcluster
+node.name: "underworldcluster-node-01"
 path:
     logs: /data/elk/log
     data: /data/elk/data
