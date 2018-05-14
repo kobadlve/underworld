@@ -15,7 +15,8 @@ services:
       - "9200:9200"
       - "9300:9300"
     volumes:
-      - ./data:/data
+      - ./data:/data # For MacOS
+#      - ./data:/usr/share/elasticsearch/data # For Ubuntu
     environment:
       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
     networks:
