@@ -1,4 +1,4 @@
-FROM kibana
+FROM kibana:6.4.0
 
 MAINTAINER kobadlve
 
