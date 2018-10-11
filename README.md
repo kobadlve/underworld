@@ -24,7 +24,7 @@ $ docker-compose build
 $ docker-compose up
 ```
 
-Kibana running on http://localhost:5061
+Kibana running on http://localhost:5601
 
 Please set index pattern to `logstash-*` and Time filter field name to `@timestame`
 
@@ -35,7 +35,7 @@ Please set index pattern to `logstash-*` and Time filter field name to `@timesta
 * ELK
   * Elasticsearch
   * Logstash
-  * Kibana - http://localhost:5061
+  * Kibana - http://localhost:5601
 * Dionaea
 
 ### ELK Stack
